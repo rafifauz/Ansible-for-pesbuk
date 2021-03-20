@@ -1,0 +1,6 @@
+---
+
+- name: Install LEMP Packages
+  apt: name={{ item }} update_cache=yes state=latest   
+  loop: [ 'mysql-server', 'python3-pymysql', 'php-fpm', 'php-mysql' ]
+  

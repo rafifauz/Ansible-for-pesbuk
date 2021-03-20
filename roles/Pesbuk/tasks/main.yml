@@ -1,0 +1,15 @@
+---
+- name: Config service nginx
+  template: src=default dest=/etc/nginx/sites-enabled/default
+
+- name: Copy Tempalte WEB
+  synchronize:
+    src: ../templates/sosial-media/
+    dest: /var/www/html/
+    rsync_opts:
+      - --include=*
+      # - --include=*.js
+      # - --exclude=*/
+
+- name: Restart Nginx
+  shell: systemctl restart nginx
