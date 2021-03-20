@@ -1,0 +1,29 @@
+---
+- name: Update repository nginx
+  apt_repository: repo='ppa:nginx/stable' state=present update_cache=yes
+  sudo: true
+
+- name: Install LEMP Packages
+  apt: name={{ item }} update_cache=yes state=latest   
+  loop: [ 'nginx', 'mysql-server', 'python3-pymysql', 'php-fpm', 'php-mysql' ]
+
+- name: install Nginx
+  apt:
+   name="nginx"
+   state=present
+   update_cache=true
+
+- name: Config service nginx
+  template: src=default dest=/etc/nginx/sites-enabled/default
+
+- name: Copy Tempalte WEB
+  synchronize:
+    src: ../templates/sosial-media/
+    dest: /var/www/html/
+    rsync_opts:
+      - --include=*
+      # - --include=*.js
+      # - --exclude=*/
+
+- name: Restart Nginx
+  shell: systemctl restart nginx
