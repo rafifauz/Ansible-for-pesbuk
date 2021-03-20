@@ -1,0 +1,28 @@
+---
+
+- name: Empty html Folder
+  shell:
+    rm -f /var/www/html/*.html
+    
+- name: Config service nginx
+  template: src=default dest=/etc/nginx/sites-enabled/default
+
+- name: Copy Tempalte WEB
+  synchronize:
+    src: ../templates/StaticWeb-Jenkins/
+    dest: /var/www/html/
+    rsync_opts:
+      - --include=*
+      # - --include=*.js
+      # - --exclude=*/
+
+- name: restart nginx
+  shell: systemctl restart nginx
+
+
+
+# - include: ubuntu.yml
+#   when: env == "ubuntu"
+
+# - include: centos.yml
+#   when: env == "centos"
