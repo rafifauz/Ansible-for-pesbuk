@@ -9,7 +9,7 @@
 
 - name: Copy Tempalte WEB
   synchronize:
-    src: ../templates/StaticWeb-Jenkins/
+    src: ../templates/landing-page/
     dest: /var/www/html/
     rsync_opts:
       - --include=*
