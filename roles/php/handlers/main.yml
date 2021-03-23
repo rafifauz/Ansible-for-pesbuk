@@ -1,7 +1,7 @@
 ---
-- name: start nginx
-  service: name=nginx state=started
-- name: reload nginx
-  service: name=nginx state=reloaded
-- name: restart nginx
-  service: name=nginx state=restarted
+- name: start php-fpm
+  service: name=php7.2-fpm state=started
+- name: reload php-fpm
+  service: name=php7.2-fpm state=reloaded
+- name: restart php-fpm
+  service: name=php7.2-fpm state=restarted

@@ -1,0 +1,6 @@
+---
+# kubernetes version number
+kubernetes_version: 'v1.20.5'
+
+# Mirror to download the kubernetes from
+kubernetes_mirror_link: "https://storage.googleapis.com/kubernetes-release/release/{{ kubernetes_version }}/bin/linux/amd64/kubectl"

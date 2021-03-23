@@ -1,6 +1,17 @@
 ---
+- name: Update repository php
+  apt_repository: repo='ppa:ondrej/php' state=present update_cache=yes
+  sudo: true
 
-- name: Install LEMP Packages
-  apt: name={{ item }} update_cache=yes state=latest   
-  loop: [ 'mysql-server', 'python3-pymysql', 'php-fpm', 'php-mysql' ]
-  
+- name: install php extensions
+  apt:
+    name: "{{ item }}"
+    state: present
+  become: yes
+  with_items:
+    - php7.2
+    - php7.2-mysql
+    - php7.2-gd
+    - php7.2-mcrypt
+    - php7.2-fpm
+  notify: restart nginx

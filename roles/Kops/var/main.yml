@@ -1,0 +1,6 @@
+---
+# kops version number
+kops_version: 'v1.18.2'
+
+# Mirror to download the kops from
+kops_mirror_link: "https://github.com/kubernetes/kops/releases/download/{{ kops_version }}/kops-linux-amd64"
