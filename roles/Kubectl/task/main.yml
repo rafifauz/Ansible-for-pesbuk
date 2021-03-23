@@ -2,7 +2,7 @@
 - name: Download Kops binaries
   get_url:
     url: "{{ kubernetes_mirror_link }}"
-    dest: /usr/local/bin/kops
+    dest: /usr/local/bin/kubectl
     owner: root
     group: root
     mode: 0755
